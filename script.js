@@ -1,17 +1,32 @@
 
-document.querySelector(".btn-authorize").addEventListener("click", authorize);
-
-
-console.log(document.cookie);
-
 var url_string = window.location.href;
 var url = new URL(url_string);
-var code = url.searchParams.get("code");
-if(typeof code == "string") {
-    document.cookie = "userName="+code;
+var data = window.location.hash.substr(1);
+data = data.split('&');
+token=data[0].split('=')[1];
+
+if(typeof token == "string") {
+    document.cookie = "token="+token;
     console.log('cookie added')
 }
 
-function authorize() {
 
+
+if(typeof getCookie("token") !== "undefined") {
+    window.location.replace("./friends.html");
 }
+
+console.log(document.cookie);
+console.log(getCookie("token"));
+
+
+
+
+
+
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
