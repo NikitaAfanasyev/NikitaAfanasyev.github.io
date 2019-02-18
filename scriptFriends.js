@@ -44,13 +44,11 @@ function getName() {
 }
 
 function callbackDisplayName (response) {
-  console.log(response);
   document.querySelector('.greetings').innerHTML="Здравствуйте, " + response.response[0].first_name + " "+ response.response[0].last_name + "!";
 
 }
 
 function callbackDisplayFriends (response) {
-    console.log(response);
     names=document.getElementsByClassName("friend-name");
 
     images=document.getElementsByClassName("friend-img");
